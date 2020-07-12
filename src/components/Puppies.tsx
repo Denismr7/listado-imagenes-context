@@ -55,7 +55,7 @@ export default function Puppies() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-            <Checkbox color="primary" onChange={(e) => handleCheck(e, pic)}/> <Typography variant="caption" component="p">Add</Typography>
+            <Checkbox color="primary" checked={selectedItem.includes(pic) ? true : false} onChange={(e) => handleCheck(e, pic)}/> <Typography variant="caption" component="p">Add</Typography>
             </CardActions>
           </Card>
             )

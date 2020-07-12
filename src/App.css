@@ -3,3 +3,32 @@
     width: 70vw;
     justify-content: space-evenly;
 }
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-left: 2rem;
+}
+.navbar ul li {
+    margin-right: 2rem;
+}
+.main, .shoppingCartPaper {
+    display: flex;
+}
+.shoppingCartTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30rem;
+}
+.shoppingCartImg {
+    height: 50px;
+}
+.shoppingCartPaper {
+    width: 30rem;
+    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.shoppingCartPaper h3 {
+    text-align: left;
+}
