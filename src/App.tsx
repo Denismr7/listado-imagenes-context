@@ -4,9 +4,11 @@ import Kitties from './components/Kitties';
 import Puppies from './components/Puppies';
 import ShoppingCart from './components/ShoppingCart';
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { StateProvider } from './context'
 
 function App() {
   return (
+    <StateProvider>
     <div className="App">
       <Router>
       <nav>
@@ -21,6 +23,7 @@ function App() {
       </Router>
       <ShoppingCart />
     </div>
+    </StateProvider>
   );
 }
 

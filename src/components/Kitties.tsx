@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import { PictureInfo } from '../interfaces';
 import { kittiesData } from '../KittiesData';
+import { StateConsumer } from '../context';
 
 
 const useStyles = makeStyles({
@@ -24,10 +25,23 @@ const useStyles = makeStyles({
 
 export default function Kitties() {
     const classes = useStyles();
+    const [selectedItem, setSelectedItem] = useContext(StateConsumer)
+
+    const handleCheck = (event: ChangeEvent<HTMLInputElement>, pic: PictureInfo) => {
+      console.log(event.target.checked);
+      if (event.target.checked && !selectedItem.includes(pic)) {
+        setSelectedItem([...selectedItem, pic])
+      }
+      else if (!event.target.checked && selectedItem.includes(pic)) {
+        const filteredArray = selectedItem.filter((item: PictureInfo) => item !== pic);
+        setSelectedItem(filteredArray)
+      }
+      console.log(selectedItem)
+    }
 
     const generateCard = (array: PictureInfo[]): JSX.Element[] => {
         return array.map(pic => 
-            <Card className={classes.root}>
+            <Card className={classes.root} key={pic.id}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
@@ -41,7 +55,7 @@ export default function Kitties() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-            <Checkbox color="primary" /> <Typography variant="caption" component="p">Add</Typography>
+            <Checkbox color="primary" onChange={(e) => handleCheck(e, pic)}/> <Typography variant="caption" component="p">Add</Typography>
             </CardActions>
           </Card>
             )
